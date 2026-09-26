@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi Amada Eve 💗</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Georgia, "Times New Roman", serif;
+            background: linear-gradient(135deg, #fff1f7, #ffe0ec, #f8dff5);
+            color: #5b2943;
+            overflow-x: hidden;
+        }
+
+        /* CORAZONES */
+        .hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -30px;
+            font-size: 22px;
+            opacity: 0.55;
+            animation: float 9s linear infinite;
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* PORTADA */
+        .hero {
+            min-height: 72vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            max-width: 850px;
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 32px;
+            padding: 48px 28px;
+            box-shadow: 0 20px 60px rgba(116, 42, 79, 0.16);
+        }
+
+        .small {
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 13px;
+            color: #a34d72;
+        }
+
+        h1 {
+            font-size: clamp(42px, 9vw, 78px);
+            margin: 15px 0 10px;
+            color: #8f315d;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .btn {
+            margin-top: 28px;
+            border: 0;
+            border-radius: 999px;
+            padding: 15px 26px;
+            background: #9f3d69;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(159, 61, 105, 0.25);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #7f2e52;
+        }
+
+        .counter {
+            text-align: center;
+            font-size: 15px;
+            color: #9a486c;
+            margin-top: 18px;
+        }
+
+        /* SECCIÓN DE DÍAS */
+        section {
+            padding: 30px 18px 70px;
+            max-width: 1050px;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #8f315d;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,
+                    minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 25px;
+        }
+
+        .day {
+            background: rgba(255, 255, 255, 0.82);
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 8px 25px rgba(116, 42, 79, 0.09);
+            transition: 0.2s;
+            border: 1px solid #f4d4e2;
+        }
+
+        .day:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(116, 42, 79, 0.15);
+        }
+
+        .num {
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #b85a7f;
+            font-weight: bold;
+        }
+
+        .day h3 {
+            margin: 8px 0;
+            color: #7f2e52;
+        }
+
+        .day p {
+            line-height: 1.55;
+            margin: 0;
+            color: #6d4054;
+        }
+
+        /* CARTA */
+        .letter {
+            max-width: 760px;
+            margin: 20px auto;
+            background: #fffafc;
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(116, 42, 79, 0.1);
+            line-height: 1.8;
+        }
+
+        .letter h2 {
+            margin-top: 0;
+        }
+
+        /* PIE */
+        footer {
+            text-align: center;
+            padding: 35px 15px 55px;
+            color: #9c5775;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CELULAR */
+        @media (max-width: 600px) {
+
+            .card {
+                padding: 35px 20px;
+            }
+
+            h1 {
+                font-size: 45px;
+            }
+
+            .subtitle {
+                font-size: 17px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .letter {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CORAZONES ANIMADOS -->
+    <div class="hearts" aria-hidden="true">
+
+        <span class="heart" style="left:8%;animation-delay:0s">
+            ♥
+        </span>
+
+        <span class="heart" style="left:22%;animation-delay:2s">
+            ♡
+        </span>
+
+        <span class="heart" style="left:40%;animation-delay:5s">
+            ♥
+        </span>
+
+        <span class="heart" style="left:63%;animation-delay:1s">
+            ♡
+        </span>
+
+        <span class="heart" style="left:82%;animation-delay:4s">
+            ♥
+        </span>
+
+    </div>
+
+
+    <!-- PORTADA -->
+
+    <header class="hero">
+
+        <div class="card">
+
+            <div class="small">
+                Una historia hecha para ti
+            </div>
+
+            <h1>
+                Mi amada Eve 💗
+            </h1>
+
+            <p class="subtitle">
+
+                No son solamente 45 días.
+
+                Son 45 pequeñas razones para recordarte
+                cuánto TE AMO, cuánto significas para mí
+                y cuánto deseo seguir construyendo momentos
+                a tu lado.
+
+            </p>
+
+            <button class="btn" onclick="document.getElementById('dias').scrollIntoView({behavior:'smooth'})">
+
+                Comenzar nuestra cuenta 💕
+
+            </button>
+
+            <div class="counter">
+
+                45 días • 45 detalles • una persona muy especial
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- 45 DÍAS -->
+
+    <section id="dias">
+
+        <h2>
+            45 días para My love 🌷
+        </h2>
+
+        <div class="grid">
+
+
+            <div class="day">
+                <div class="num">DÍA 01</div>
+                <h3>El comienzo</h3>
+                <p>
+                    Hoy comienza este pequeño recorrido
+                    pensado especialmente para ti.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 02</div>
+                <h3>Tu sonrisa</h3>
+                <p>
+                    Hay sonrisas que cambian un momento.
+                    La tuya cambia mis días.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 03</div>
+                <h3>Tu forma de ser</h3>
+                <p>
+                    Me encanta esa manera tuya de hacer
+                    que mis dias sean menos grises.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 04</div>
+                <h3>Un pensamiento</h3>
+                <p>
+                    Hoy solo quería recordarte que estás
+                    presente en muchos de mis pensamientos.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 05</div>
+                <h3>Un abrazo</h3>
+                <p>
+                    Si pudiera elegir un lugar para quedarme
+                    sería siempre entre tus brazos.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 06</div>
+                <h3>Tu compañía</h3>
+                <p>
+                    Contigo, incluso los momentos sencillos
+                    tienen algo diferente.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 07</div>
+                <h3>Gracias</h3>
+                <p>
+                    Gracias por cada conversación,
+                    cada detalle y cada instante compartido.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 08</div>
+                <h3>Tu mirada</h3>
+                <p>
+                    Hay miradas que dicen mucho sin
+                    necesidad de palabras. La tuya es una de ellas.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 09</div>
+                <h3>Un deseo</h3>
+                <p>
+                    Deseo que podamos llenar nuestra historia
+                    de momentos que algún día recordemos sonriendo.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 10</div>
+                <h3>Diez días</h3>
+                <p>
+                    Ya van diez. Y todavía quedan muchísimas
+                    cosas bonitas por vivir.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 11</div>
+                <h3>Tu voz</h3>
+                <p>
+                    Escucharte puede convertir un día normal
+                    en uno mucho más bonito.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 12</div>
+                <h3>Pequeños detalles</h3>
+                <p>
+                    A veces no hace falta algo enorme;
+                    basta un pequeño detalle para hacerme feliz.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 13</div>
+                <h3>Nosotros</h3>
+                <p>
+                    Me gusta pensar en todo lo que todavía
+                    podemos construir juntos.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 14</div>
+                <h3>Dos semanas</h3>
+                <p>
+                    Catorce días de esta pequeña aventura
+                    y una razón más para sonreír.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 15</div>
+                <h3>Mitad del camino</h3>
+                <p>
+                    Hoy celebro que llegamos hasta aquí,
+                    pero esto apenas sigue comenzando.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 16</div>
+                <h3>Un recuerdo</h3>
+                <p>
+                    Guardo con cariño esos momentos
+                    que solo nosotros entendemos.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 17</div>
+                <h3>Tu alegría</h3>
+                <p>
+                    Verte feliz es una de esas cosas
+                    que también consigue alegrarme.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 18</div>
+                <h3>Un paseo</h3>
+                <p>
+                    Algún día más, algún lugar nuevo
+                    y tú a mi lado. Ese plan me parece perfecto.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 19</div>
+                <h3>Sin prisa</h3>
+                <p>
+                    Quiero disfrutar contigo los momentos
+                    pequeños, sin necesidad de correr.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 20</div>
+                <h3>Veinte razones</h3>
+                <p>
+                    Ya llevamos veinte días y todavía podría
+                    escribir muchísimas razones más.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 21</div>
+                <h3>Un "te quiero"</h3>
+                <p>
+                    Hay palabras sencillas que nunca pierden
+                    su significado: te quiero.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 22</div>
+                <h3>Tu esencia</h3>
+                <p>
+                    No quiero cambiar lo que te hace ser tú.
+                    Esa esencia es parte de lo que amo.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 23</div>
+                <h3>Una canción</h3>
+                <p>
+                    Si hoy tuviera que elegir una canción para ti,
+                    sería una que me hiciera pensar en nosotros.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 24</div>
+                <h3>Un deseo más</h3>
+                <p>
+                    Que nunca nos falten motivos para hablar,
+                    reír, abrazarnos y acompañarnos.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 25</div>
+                <h3>Veinticinco</h3>
+                <p>
+                    Más de la mitad del recorrido.
+                    Y mi cariño sigue creciendo.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 26</div>
+                <h3>Tu tranquilidad</h3>
+                <p>
+                    Quiero ser también un lugar donde puedas
+                    sentirte acompañada y querida.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 27</div>
+                <h3>Una aventura</h3>
+                <p>
+                    Me gustaría llenar nuestra historia
+                    de pequeñas aventuras y grandes recuerdos.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 28</div>
+                <h3>Un mes casi</h3>
+                <p>
+                    Veintiocho días pensando en una persona
+                    que hace especial mi vida.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 29</div>
+                <h3>Tu lugar</h3>
+                <p>
+                    Hay personas que llegan y terminan ocupando
+                    un lugar que ya no se puede reemplazar.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 30</div>
+                <h3>Treinta días</h3>
+                <p>
+                    Un mes entero de pequeños mensajes
+                    para decirte lo importante que eres.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 31</div>
+                <h3>Otro comienzo</h3>
+                <p>
+                    Cada día puede ser una nueva oportunidad
+                    para querernos un poquito más.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 32</div>
+                <h3>Tu nombre</h3>
+                <p>
+                    Eveling. Un nombre que para mí tiene recuerdos,
+                    cariño y muchísimas emociones bonitas.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 33</div>
+                <h3>Un café</h3>
+                <p>
+                    Un café, una charla tranquila y tú.
+                    A veces no necesito más.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 34</div>
+                <h3>Un futuro</h3>
+                <p>
+                    Me emociona imaginar todos esos días
+                    que todavía no conocemos.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 35</div>
+                <h3>Gracias por existir</h3>
+                <p>
+                    Hoy la frase es sencilla:
+                    gracias por ser parte de mi vida.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 36</div>
+                <h3>Una promesa</h3>
+                <p>
+                    Prometo valorar los momentos que compartimos
+                    y cuidar lo bonito que construimos.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 37</div>
+                <h3>Tu compañía</h3>
+                <p>
+                    Incluso un día cualquiera puede convertirse
+                    en un buen día cuando estoy contigo.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 38</div>
+                <h3>Un abrazo pendiente</h3>
+                <p>
+                    Si hoy no puedo darte uno, queda guardado
+                    uno enorme para cuando nos encontremos.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 39</div>
+                <h3>Mi persona especial</h3>
+                <p>
+                    Entre tantas personas, qué bonito haber
+                    encontrado a alguien tan especial para mí.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 40</div>
+                <h3>Cuarenta</h3>
+                <p>
+                    Cuarenta días y todavía tengo mucho
+                    cariño que demostrarte.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 41</div>
+                <h3>Un "gracias" más</h3>
+                <p>
+                    Gracias por cada instante que se ha convertido
+                    en un recuerdo bonito.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 42</div>
+                <h3>Lo que viene</h3>
+                <p>
+                    Lo mejor de una historia bonita es saber
+                    que todavía quedan páginas por escribir.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 43</div>
+                <h3>Casi al final</h3>
+                <p>
+                    Pero que termine esta cuenta no significa
+                    que termine lo que siento.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 44</div>
+                <h3>Mañana</h3>
+                <p>
+                    Mañana llegará el último día de esta pequeña
+                    sorpresa, pero habrá muchos más días para nosotros.
+                </p>
+            </div>
+
+
+            <div class="day">
+                <div class="num">DÍA 45</div>
+                <h3>Para siempre en mi recuerdo 💗</h3>
+                <p>
+                    Si llegaste hasta aquí, quiero que sepas algo:
+                    todo esto fue hecho pensando en ti.
+                    Te amo muchísimo.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CARTA -->
+
+    <section>
+
+        <div class="letter">
+
+            <h2>
+                Una carta para ti 💌
+            </h2>
+
+            <p>
+                Mi amada Eveling:
+            </p>
+
+            <p>
+                Preparé estos 45 días porque quería regalarte
+                algo diferente. No quería simplemente decirte
+                "te amo" una vez, sino recordártelo de muchas
+                maneras pequeñas, recordarte que siempre estas
+                en mi mente, corazon y sonrisa.
+            </p>
+
+            <p>
+                Espero que cada día de esta página te saque
+                aunque sea una pequeña sonrisa. Y cuando llegues
+                al día 45, recuerda que detrás de cada palabra
+                hay alguien que te piensa, te valora y se siente
+                muy feliz de poder compartir parte de su vida contigo.
+            </p>
+
+            <p style="text-align:center;font-size:22px">
+
+                Con todo mi cariño, para mi Amada. ❤️
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        Hecho especialmente para Eveling ·
+        45 días de amor y pequeños detalles 💕
+
+    </footer>
+
+
+    <script>
+
+        /* CREAR CORAZONES AUTOMÁTICAMENTE */
+
+        const container = document.querySelector(".hearts");
+
+        for (let i = 0; i < 15; i++) {
+
+            const heart = document.createElement("span");
+
+            heart.className = "heart";
+
+            heart.textContent =
+                Math.random() > 0.5 ? "♥" : "♡";
+
+            heart.style.left =
+                (Math.random() * 100) + "%";
+
+            heart.style.animationDelay =
+                (Math.random() * 8) + "s";
+
+            heart.style.animationDuration =
+                (7 + Math.random() * 6) + "s";
+
+            heart.style.fontSize =
+                (14 + Math.random() * 18) + "px";
+
+            container.appendChild(heart);
+        }
+
+    </script>
+
+</body>
+
+</html>
